@@ -1,17 +1,16 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
-
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
     val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    println("Input size:${input.size}")
+    println("Part 1 soln: ${part1(input.map { it.toInt() })}")
+    println("Part 2 soln: ${part2(input.map { it.toInt() })}")
 }
+
+private fun part1(inputList: List<Int>): Int {
+    return inputList.windowed(2).count { it[1] > it[0] }
+}
+
+private fun part2(inputList: List<Int>): Int {
+    return inputList.windowed(3).map { it.sum() }.windowed(2).count { it[1] > it[0] }
+}
+
+
